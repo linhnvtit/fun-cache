@@ -9,12 +9,11 @@ FunCache is a Kotlin library that provides easy-to-use annotation for caching fu
 
 ## Gradle
 ```kotlin
-plugins {
-    id("my.cache.plugin") version "1.0.0"
-}
+import org.jetbrains.kotlin.gradle.plugin.PLUGIN_CLASSPATH_CONFIGURATION_NAME
 
 dependencies {
-    implementation("com.example:my-library:1.0.0")
+    implementation("com.github.linhnvtit:fun-cache:1.0.0")
+    PLUGIN_CLASSPATH_CONFIGURATION_NAME("com.github.linhnvtit:fun-cache:1.0.0")
 }
 ```
 
