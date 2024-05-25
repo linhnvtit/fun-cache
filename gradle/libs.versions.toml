@@ -1,0 +1,15 @@
+[versions]
+kotlin = "1.9.23"
+googleAutoService = "1.0.1"
+
+[libraries]
+kotlin-compiler = { module = "org.jetbrains.kotlin:kotlin-compiler-embeddable", version.ref = "kotlin" }
+google-autoservice-annotation = { module = "com.google.auto.service:auto-service-annotations", version.ref = "googleAutoService" }
+google-autoservice = { module = "com.google.auto.service:auto-service", version.ref = "googleAutoService" }
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+
+[plugins]
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm" }
+maven-publish = { id = "maven-publish" }
