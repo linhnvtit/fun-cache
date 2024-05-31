@@ -1,11 +1,12 @@
 # FunCache
-FunCache is a Kotlin library that provides easy-to-use annotation for caching function results. By leveraging Kotlin Compiler Plugin, FunCache ensures that caching is seamlessly integrated into your Kotlin code, offering improved performance with minimal boilerplate.
+FunCache is a Kotlin library that provides easy-to-use annotation for caching function results. By leveraging Kotlin Compiler Plugin, it ensures that caching is seamlessly integrated into your Kotlin code, offering improved performance with minimal boilerplate.
 
 ## Features
 - Simple Annotation: Just add `@Cache` annotation to your function, and the library handles the rest.
 - Seamless Integration: Works with Kotlin's compiler plugin to automatically manage caching.
 - Configurable: Customize cache behavior according to your needs.
 - Thread-Safe: Ensures safe access to cache in multi-threaded environments.
+- **Note**: Should only be used with "pure functions".
 
 ## Gradle
 ```kotlin
