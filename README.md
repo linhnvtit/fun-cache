@@ -51,7 +51,7 @@ fun fibonacci(num: Int): Int { TODO() }
 ```
 
 - You can also clear the cache of an annotated function by passing its reflection to `FunCache.clearCache`
-    - Reference: [https://kotlinlang.org/docs/reflection.html#function-references](https://kotlinlang.org/docs/reflection.html#function-references)
+    - Reference: <a href="https://kotlinlang.org/docs/reflection.html#function-references" target="_blank">Kotlin Reflection</a>
 ```kotlin
 FunCache.clearCache(::fibonacci)
 ```
