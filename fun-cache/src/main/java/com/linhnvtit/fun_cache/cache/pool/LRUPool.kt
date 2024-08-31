@@ -1,6 +1,7 @@
 package com.linhnvtit.fun_cache.cache.pool
 
 import com.linhnvtit.fun_cache.utils.FunCacheLog
+import java.util.concurrent.ConcurrentHashMap
 
 private class LRUNode<T>(
     var key: String,
@@ -10,7 +11,7 @@ private class LRUNode<T>(
 )
 
 class LRUPool<T>(private val capacity: Int) : FunCachePool<T> {
-    private val hash = mutableMapOf<String, LRUNode<T>>()
+    private val hash: ConcurrentHashMap<String, LRUNode<T>> = ConcurrentHashMap()
     private val head: LRUNode<T> = LRUNode("head", null)
     private val tail: LRUNode<T> = LRUNode("tail", null)
 
@@ -35,7 +36,7 @@ class LRUPool<T>(private val capacity: Int) : FunCachePool<T> {
         }
     }
 
-    override fun has(key: String): Boolean = key in hash
+    override fun has(key: String): Boolean = hash.containsKey(key)
 
     override fun put(key: String, value: T) {
         try {

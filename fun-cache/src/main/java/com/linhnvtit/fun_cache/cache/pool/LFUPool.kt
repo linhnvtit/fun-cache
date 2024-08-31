@@ -1,6 +1,7 @@
 package com.linhnvtit.fun_cache.cache.pool
 
 import com.linhnvtit.fun_cache.utils.FunCacheLog
+import java.util.concurrent.ConcurrentHashMap
 
 
 private class LFUNode<T>(
@@ -10,19 +11,19 @@ private class LFUNode<T>(
 class LFUPool<T>(private var capacity: Int) : FunCachePool<T> {
     private var head: LFUNode<T> = LFUNode("head", null)
     private var tail: LFUNode<T> = LFUNode("tail", null)
-    private val hash: HashMap<String, LFUNode<T>> = hashMapOf()
-    private val freqs: HashMap<Int, LFUNode<T>> = hashMapOf(1 to head)
+    private val hash: ConcurrentHashMap<String, LFUNode<T>> = ConcurrentHashMap()
+    private val freqs: ConcurrentHashMap<Int, LFUNode<T>> = ConcurrentHashMap(hashMapOf(1 to head))
 
     init {
         head.next = tail
         tail.prev = head
     }
 
-    override fun has(key: String): Boolean = key in hash
+    override fun has(key: String): Boolean = hash.containsKey(key)
 
     override fun get(key: String): T? {
         try {
-            if (key in hash) {
+            if (hash.containsKey(key)) {
                 val node = hash[key]!!
                 node.freq += 1
 
@@ -52,7 +53,7 @@ class LFUPool<T>(private var capacity: Int) : FunCachePool<T> {
 
     override fun put(key: String, value: T) {
         try {
-            if (key in hash) {
+            if (hash.containsKey(key)) {
                 val node = hash[key]!!
                 node.freq += 1
                 node.value = value

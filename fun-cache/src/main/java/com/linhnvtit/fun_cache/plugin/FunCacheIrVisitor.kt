@@ -59,6 +59,7 @@ internal class FunCacheIrVisitor(
             val builder = IrBlockBodyBuilder(
                 pluginContext, Scope(declaration.symbol), declaration.startOffset, declaration.endOffset
             )
+
             declaration.body = builder.irBlockBody {
                 val hashCodeFunction = context.irBuiltIns.anyClass.functions.first { it.owner.name.asString() == "hashCode" }
                 val parametersHashCodeVariable = buildList {
@@ -92,8 +93,8 @@ internal class FunCacheIrVisitor(
                     putValueArgument(0, funcSignature)
                     putValueArgument(1, concatenatedHashCodes)
                 })
-                val capacity = (cacheAnnotation.getValueArgument(0))
-                val cacheStrategy = (cacheAnnotation.getValueArgument(1))
+                val capacity = cacheAnnotation.getValueArgument(0)
+                val cacheStrategy = cacheAnnotation.getValueArgument(1)
 
                 val tryInitFunctionCache =
                     irCall(funCacheTryInitFunc).apply {
